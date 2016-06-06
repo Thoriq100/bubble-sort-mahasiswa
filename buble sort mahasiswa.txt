@@ -1,0 +1,73 @@
+#include<iostream>
+#include<string.h>
+using namespace std;
+int main()
+{
+struct DataMhs
+{
+long int nim;
+char nama[30],fakultas[30];
+};
+int menu, i, j, BykMhs;
+DataMhs mahasiswa[30];
+DataMhs fakultas;
+DataMhs temp;
+cout<<”Sorting”<<endl;
+cout<<”Banyak mahasiswa : “; cin>>BykMhs;
+//input data
+for(int a=0; a<BykMhs; a++)
+{
+cout<<”Nim : “; cin>>mahasiswa[a].nim;
+cout<<”Nama : “; cin>>mahasiswa[a].nama;
+cout<<”Fakultas : “; cin>>mahasiswa[a].fakultas;
+cout<<endl;
+}
+//data sebelum terurut
+cout<<”Data yang anda masukkan (belum urut)”<<endl;
+for(int b=0; b<BykMhs; b++)
+{
+cout<<”Nim : “<<mahasiswa[b].nim<<endl
+<<”Nama : “<<mahasiswa[b].nama<<endl
+<<”Fakultas : “<<mahasiswa[b].fakultas<<endl<<endl;
+}
+//menampilkan menu pilihan untuk melakukan sorting
+cout<<endl<<”Apakah anda ingin melakukan pengurutan : “<<endl
+<<”[1] Ya”<<endl
+<<”[2] Tidak”<<endl
+<<”Silahkan masukkan pilihan anda : “; cin>>menu;
+//sorting
+if(menu==1)
+{
+//sorting (buble sort) berdasarkan nim
+for(i=0; i<BykMhs-1; i++)
+{
+for(int j=0; j<BykMhs-1-i; j++)
+{
+if(mahasiswa[j].nim>mahasiswa[j+1].nim)
+{
+//tukar nim
+temp.nim=mahasiswa[j].nim;
+mahasiswa[j].nim=mahasiswa[j+1].nim;
+mahasiswa[j+1].nim=temp.nim;
+//tukar nama
+strcpy(temp.nama, mahasiswa[j].nama);
+strcpy(mahasiswa[j].nama, mahasiswa[j+1].nama);
+strcpy(mahasiswa[j+1].nama, temp.nama);
+//tukar Fakultas
+strcpy(temp.fakultas, mahasiswa[j].fakultas);
+strcpy(mahasiswa[j].fakultas, mahasiswa[j+1].fakultas);
+strcpy(mahasiswa[j+1].fakultas, temp.fakultas);
+}
+}
+}
+//data setelah urut
+cout<<”\nData telah urut”<<endl;
+for(int c=0; c<BykMhs; c++)
+{
+cout<<”Nim : “<<mahasiswa[c].nim<<endl
+<<”Nama : “<<mahasiswa[c].nama<<endl
+<<”Fakultas : “<<mahasiswa[c].fakultas<<endl<<endl;
+}
+}else if(menu==2)
+return 0;
+}
